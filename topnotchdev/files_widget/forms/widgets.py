@@ -45,7 +45,7 @@ class BaseFilesWidget(forms.MultiWidget):
             return [value, '', '', ]
         return ['', '', '', ]
 
-    def render(self, name, value, attrs=None):
+    def render(self, name, value, attrs=None, renderer=None):
         if not isinstance(value, list):
             value = self.decompress(value)
         files, deleted_files, moved_files = value
@@ -54,7 +54,7 @@ class BaseFilesWidget(forms.MultiWidget):
             'MEDIA_URL': settings.MEDIA_URL,
             'STATIC_URL': settings.STATIC_URL,
             'add_image_by_url': ADD_IMAGE_BY_URL,
-            'input_string': super(BaseFilesWidget, self).render(name, value, attrs),
+            'input_string': super(BaseFilesWidget, self).render(name, value, attrs, renderer),
             'name': name,
             'files': files,
             'deleted_files': deleted_files,
